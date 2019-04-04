@@ -9,52 +9,54 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class BinarySearchTest {
+    /** How about creating a class with those variables? **/
+    private int valueInSequence = 5;
+    private int valueNotInSequence = 0;
+    private int valueMiddleInSequence = 15;
+    private int [] sizeOneSequence = {5};
+    private int [] sizeFiveSequence = {5, 12, 66, 194, 199};
+    private int [] emptySequence = {};
+    private SearchResult result;
 
-    int valueInSequence = 5;
-    int valueNotInSequence = 0;
-    int [] seq = {5};
-    int [] seq2 = {5, 12, 66, 194, 199};
-    int [] emptySeq = {};
-    SearchResult result;
-
-    @Test /*** is this one even needed? ***/
+    /** is this one even needed? **/
+    @Test
     public void isInSequenceTest() {
-        result = BinarySearch.search(valueInSequence, seq);
+        result = BinarySearch.search(valueInSequence, sizeOneSequence);
         assertTrue(result.isFound());
         assertThat(result.getPosition(),is(equalTo(1)));
     }
 
     @Test
     public void isNotInSequenceTest() {
-        result = BinarySearch.search(valueNotInSequence, seq);
+        result = BinarySearch.search(valueNotInSequence, sizeOneSequence);
         assertFalse(result.isFound());
         assertThat(result.getPosition(),is(equalTo(-1)));
     }
 
     @Test
     public void isFirstInSequenceTest() {
-        result = BinarySearch.search(seq2[0], seq2);
+        result = BinarySearch.search(sizeFiveSequence[0], sizeFiveSequence);
         assertTrue(result.isFound());
         assertThat(result.getPosition(),is(equalTo(1)));
     }
 
     @Test
     public void isLastInSequenceTest() {
-        result = BinarySearch.search(seq2[seq2.length-1], seq2);
+        result = BinarySearch.search(sizeFiveSequence[sizeFiveSequence.length-1], sizeFiveSequence);
         assertTrue(result.isFound());
-        assertThat(result.getPosition(), is(equalTo(seq2.length)));
+        assertThat(result.getPosition(), is(equalTo(sizeFiveSequence.length)));
     }
 
     @Test
     public void isMiddleInSequenceTest() {
-        result = BinarySearch.search(seq2[seq2.length/2], seq2);
+        result = BinarySearch.search(valueMiddleInSequence, sizeFiveSequence);
         assertTrue(result.isFound());
-        assertThat(result.getPosition(), is(equalTo((seq2.length/2)+1)));
+        assertThat(result.getPosition(), is(equalTo((sizeFiveSequence.length/2)+1)));
     }
 
     @Test
     public void isNotInNonSingularSequenceTest() {
-        result = BinarySearch.search(valueNotInSequence, seq2);
+        result = BinarySearch.search(valueNotInSequence, sizeFiveSequence);
         assertFalse(result.isFound());
         assertThat(result.getPosition(),is(equalTo(-1)));
     }
@@ -62,7 +64,7 @@ public class BinarySearchTest {
     @Test
     public void emptySequenceExceptionTest(){
         try{
-            BinarySearch.sequenceCheck(emptySeq);
+            BinarySearch.sequenceCheck(emptySequence);
             fail("expected IllegalArgumentException");
         }catch(IllegalArgumentException e) {/**success**/}
     }
