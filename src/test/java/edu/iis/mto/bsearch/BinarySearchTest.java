@@ -2,6 +2,10 @@ package edu.iis.mto.bsearch;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+
 import static org.junit.Assert.*;
 
 public class BinarySearchTest {
@@ -12,12 +16,12 @@ public class BinarySearchTest {
     int [] emptySeq = {};
     SearchResult result;
 
-    @Test
+    @Test /*** is this one even needed? ***/
     public void isInSequenceTest() {
         key = 5;
         result = BinarySearch.search(key, seq);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(), 1);
+        assertThat(result.getPosition(),is(equalTo(1)));
     }
 
     @Test
@@ -25,7 +29,7 @@ public class BinarySearchTest {
         key = 0;
         result = BinarySearch.search(key, seq);
         assertFalse(result.isFound());
-        assertEquals(result.getPosition(), -1);
+        assertThat(result.getPosition(),is(equalTo(-1)));
     }
 
     @Test
@@ -33,7 +37,7 @@ public class BinarySearchTest {
         key = seq2[0];
         result = BinarySearch.search(key, seq2);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(),1);
+        assertThat(result.getPosition(),is(equalTo(1)));
     }
 
     @Test
@@ -41,7 +45,7 @@ public class BinarySearchTest {
         key = seq2[seq2.length-1];
         result = BinarySearch.search(key, seq2);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(),seq2.length);
+        assertThat(result.getPosition(), is(equalTo(seq2.length)));
     }
 
     @Test
@@ -49,7 +53,7 @@ public class BinarySearchTest {
         key = seq2[seq2.length/2];
         result = BinarySearch.search(key, seq2);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(),(seq2.length/2)+1);
+        assertThat(result.getPosition(), is(equalTo((seq2.length/2)+1)));
     }
 
     @Test
@@ -57,7 +61,7 @@ public class BinarySearchTest {
         key = 0;
         result = BinarySearch.search(key, seq2);
         assertFalse(result.isFound());
-        assertEquals(result.getPosition(),-1);
+        assertThat(result.getPosition(),is(equalTo(-1)));
     }
 
     @Test
@@ -65,10 +69,7 @@ public class BinarySearchTest {
         try{
             BinarySearch.sequenceCheck(emptySeq);
             fail("expected IllegalArgumentException");
-        }catch(IllegalArgumentException e)
-        {
-            //success
-        }
+        }catch(IllegalArgumentException e) {/**success**/}
     }
 
 }
