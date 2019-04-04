@@ -27,4 +27,28 @@ public class BinarySearchTest {
         assertFalse(result.isFound());
         assertEquals(result.getPosition(), -1);
     }
+
+    @Test
+    void isFirstInSequenceTest() {
+        key = seq2[0];
+        result = BinarySearch.search(key, seq2);
+        assertTrue(result.isFound());
+        assertEquals(result.getPosition(),1);
+    }
+
+    @Test
+    void isLastInSequenceTest() {
+        key = seq2[seq2.length-1];
+        result = BinarySearch.search(key, seq2);
+        assertTrue(result.isFound());
+        assertEquals(result.getPosition(),seq2.length);
+    }
+
+    @Test
+    void isMiddleInSequenceTest() {
+        key = seq2[seq2.length/2];
+        result = BinarySearch.search(key, seq2);
+        assertTrue(result.isFound());
+        assertEquals(result.getPosition(),(seq2.length/2)+1);
+    }
 }
