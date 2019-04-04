@@ -13,7 +13,7 @@ public class BinarySearchTest {
     SearchResult result;
 
     @Test
-    void isInSequenceTest() {
+    public void isInSequenceTest() {
         key = 5;
         result = BinarySearch.search(key, seq);
         assertTrue(result.isFound());
@@ -21,7 +21,7 @@ public class BinarySearchTest {
     }
 
     @Test
-    void isNotInSequenceTest() {
+    public void isNotInSequenceTest() {
         key = 0;
         result = BinarySearch.search(key, seq);
         assertFalse(result.isFound());
@@ -29,7 +29,7 @@ public class BinarySearchTest {
     }
 
     @Test
-    void isFirstInSequenceTest() {
+    public void isFirstInSequenceTest() {
         key = seq2[0];
         result = BinarySearch.search(key, seq2);
         assertTrue(result.isFound());
@@ -37,7 +37,7 @@ public class BinarySearchTest {
     }
 
     @Test
-    void isLastInSequenceTest() {
+    public void isLastInSequenceTest() {
         key = seq2[seq2.length-1];
         result = BinarySearch.search(key, seq2);
         assertTrue(result.isFound());
@@ -45,7 +45,7 @@ public class BinarySearchTest {
     }
 
     @Test
-    void isMiddleInSequenceTest() {
+    public void isMiddleInSequenceTest() {
         key = seq2[seq2.length/2];
         result = BinarySearch.search(key, seq2);
         assertTrue(result.isFound());
@@ -53,10 +53,22 @@ public class BinarySearchTest {
     }
 
     @Test
-    void isNotInNonSingularSequenceTest() {
+    public void isNotInNonSingularSequenceTest() {
         key = 0;
         result = BinarySearch.search(key, seq2);
         assertFalse(result.isFound());
         assertEquals(result.getPosition(),-1);
     }
+
+    @Test
+    public void emptySequenceExceptionTest(){
+        try{
+            BinarySearch.sequenceCheck(emptySeq);
+            fail("expected IllegalArgumentException");
+        }catch(IllegalArgumentException e)
+        {
+            //success
+        }
+    }
+
 }
