@@ -10,7 +10,8 @@ import static org.junit.Assert.*;
 
 public class BinarySearchTest {
 
-    int key;
+    int valueInSequence = 5;
+    int valueNotInSequence = 0;
     int [] seq = {5};
     int [] seq2 = {5, 12, 66, 194, 199};
     int [] emptySeq = {};
@@ -18,48 +19,42 @@ public class BinarySearchTest {
 
     @Test /*** is this one even needed? ***/
     public void isInSequenceTest() {
-        key = 5;
-        result = BinarySearch.search(key, seq);
+        result = BinarySearch.search(valueInSequence, seq);
         assertTrue(result.isFound());
         assertThat(result.getPosition(),is(equalTo(1)));
     }
 
     @Test
     public void isNotInSequenceTest() {
-        key = 0;
-        result = BinarySearch.search(key, seq);
+        result = BinarySearch.search(valueNotInSequence, seq);
         assertFalse(result.isFound());
         assertThat(result.getPosition(),is(equalTo(-1)));
     }
 
     @Test
     public void isFirstInSequenceTest() {
-        key = seq2[0];
-        result = BinarySearch.search(key, seq2);
+        result = BinarySearch.search(seq2[0], seq2);
         assertTrue(result.isFound());
         assertThat(result.getPosition(),is(equalTo(1)));
     }
 
     @Test
     public void isLastInSequenceTest() {
-        key = seq2[seq2.length-1];
-        result = BinarySearch.search(key, seq2);
+        result = BinarySearch.search(seq2[seq2.length-1], seq2);
         assertTrue(result.isFound());
         assertThat(result.getPosition(), is(equalTo(seq2.length)));
     }
 
     @Test
     public void isMiddleInSequenceTest() {
-        key = seq2[seq2.length/2];
-        result = BinarySearch.search(key, seq2);
+        result = BinarySearch.search(seq2[seq2.length/2], seq2);
         assertTrue(result.isFound());
         assertThat(result.getPosition(), is(equalTo((seq2.length/2)+1)));
     }
 
     @Test
     public void isNotInNonSingularSequenceTest() {
-        key = 0;
-        result = BinarySearch.search(key, seq2);
+        result = BinarySearch.search(valueNotInSequence, seq2);
         assertFalse(result.isFound());
         assertThat(result.getPosition(),is(equalTo(-1)));
     }
