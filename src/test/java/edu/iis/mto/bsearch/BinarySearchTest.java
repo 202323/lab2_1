@@ -17,8 +17,7 @@ public class BinarySearchTest {
     private int [] sizeFiveSequence = {5, 12, 66, 194, 199};
     private int [] emptySequence = {};
     private SearchResult result;
-
-    /** is this one even needed? **/
+    
     @Test
     public void isInSequenceTest() {
         result = BinarySearch.search(valueInSequence, sizeOneSequence);
