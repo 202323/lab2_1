@@ -51,4 +51,12 @@ public class BinarySearchTest {
         assertTrue(result.isFound());
         assertEquals(result.getPosition(),(seq2.length/2)+1);
     }
+
+    @Test
+    void isNotInNonSingularSequenceTest() {
+        key = 0;
+        result = BinarySearch.search(key, seq2);
+        assertFalse(result.isFound());
+        assertEquals(result.getPosition(),-1);
+    }
 }
